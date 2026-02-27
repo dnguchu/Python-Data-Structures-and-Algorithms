@@ -49,3 +49,21 @@ class my_class():
     
 a = my_class('Hello')
 a
+
+#Problem 3
+#Inheritance
+"""
+Inheritance allows us to create a new class that modifies the behavior of an existing class
+This is achieved by passing the existing class as an argument to the new class
+"""
+class specialEmployee(Employee):
+    """
+    For a subclass to define new class variables, it needs to define an __init__ method as follows
+    """
+    def __init__(self, name, rate, bonus):
+        Employee.__init__(self, name, rate) #Calls the __init__ method of the base class
+        self.bonus = bonus
+
+    def hours(self, numHours):
+        self.owed += numHours * self.rate * 2
+        return ('%.2f hours worked' % numHours)
