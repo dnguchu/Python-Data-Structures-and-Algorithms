@@ -67,3 +67,33 @@ class specialEmployee(Employee):
     def hours(self, numHours):
         self.owed += numHours * self.rate * 2
         return ('%.2f hours worked' % numHours)
+
+    """
+    Methods of the base class are not automatically invoked and it is necessary for the 
+    derived class to call them explicitly using the super() function or by calling the method of the base class directly
+    """
+    def pay(self):
+        #self.owed = 0
+        super().pay() #Calls the pay method of the base class and resets owed using base implementation
+        return ('payed %s with a bonus of %s' %(self.name, self.bonus))
+    
+spemp = specialEmployee('Guchu', 18.30, 1000)
+spemp.pay()
+
+#Problem 4
+"""
+Within a class definition not all methods operate on the instance of the class
+Static methods do not perform any operations on the class instance and is defined using the @staticmethod decorator
+Class methods operate on the class itself and is defined using the @classmethod decorator
+Class methods take the class as the first argument and is conventionally named cls
+"""
+class Aexp(object):
+    base = 2
+    @classmethod
+    def exp(cls, x):
+        return(cls.base ** x)
+    
+class Bexp(Aexp):
+    base = 3
+
+Bexp.exp(3)
